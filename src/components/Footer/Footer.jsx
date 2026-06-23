@@ -1,16 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Footer.css";
-import logo from "../../assets/stackly_logo.webp"
+import logo from "../../assets/stackly.webp"
 
 /* ============================================================
    Earthbound — Site Footer
    Matches the liquid-glass design system from EarthboundLanding.
-
-   LOGO: replace LOGO_SRC below with your logo file path (or pass
-   a `logoSrc` prop). Same image works for header and footer.
    ============================================================ */
 
-const LOGO_SRC = logo; // <-- put your logo image path/URL here, e.g. "/logo.png"
+const LOGO_SRC = logo;
 
 function ArrowUpRight({ className = "" }) {
   return (
@@ -31,30 +29,35 @@ function ArrowUpRight({ className = "" }) {
   );
 }
 
-const FOOTER_COLUMNS = [
-  {
-    heading: "Farm",
-    links: ["Our Fields", "Practices", "Harvest Calendar", "Visit the Farm"],
-  },
-  {
-    heading: "Shop",
-    links: ["This Week's Box", "Market Stand", "Wholesale", "Co-op Membership"],
-  },
-  {
-    heading: "About",
-    links: ["Our Story", "Soil Notes (Blog)", "Careers", "Contact"],
-  },
+const QUICK_LINKS = [
+  { label: "Home", path: "/" },
+  { label: "Our Fields", path: "/fields" },
+  { label: "Harvest", path: "/harvest" },
+  { label: "Practices", path: "/practices" },
+  { label: "Visit the Farm", path: "/visit" },
+  { label: "Join the Co-op", path: "/join" },
 ];
 
-export default function Footer({ logoSrc = LOGO_SRC, logoAlt = "Farm logo" }) {
+export default function Footer({ logoSrc = LOGO_SRC, logoAlt = "Stackly" }) {
+  const navigate = useNavigate();
   const year = new Date().getFullYear();
+
+  
 
   return (
     <footer className="ef-footer">
       <div className="ef-top liquid-glass">
         <div className="ef-brand">
-          {/* Logo placeholder — swap logoSrc for your image */}
-          <div className="ef-logo liquid-glass">
+          {/* Logo - navigates to "/" */}
+          <div 
+            className="ef-logo liquid-glass" 
+            onClick={() => handleNavigate('/')}
+            style={{ cursor: 'pointer' }}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && handleNavigate('/')}
+            onClick={()=>navigate("/")}
+          >
             {logoSrc ? (
               <img src={logoSrc} alt={logoAlt} className="ef-logo-img" />
             ) : (
@@ -65,39 +68,44 @@ export default function Footer({ logoSrc = LOGO_SRC, logoAlt = "Farm logo" }) {
             Grown from soil, not from shortcuts. A small farm, farmed slowly,
             shared with the valley around it.
           </p>
-          <a href="#" className="ef-cta font-body">
+          <button 
+            className="ef-cta font-body"
+            onClick={() => navigate('/404')}
+          >
             Join the Co-op
             <ArrowUpRight />
-          </a>
+          </button>
         </div>
 
+        {/* Quick Links */}
         <div className="ef-columns">
-          {FOOTER_COLUMNS.map((col) => (
-            <div key={col.heading} className="ef-column">
-              <div className="ef-column-heading font-body">{col.heading}</div>
-              <ul className="ef-column-list">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="ef-column-link font-body">
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div className="ef-column">
+            <div className="ef-column-heading font-body">Quick Links</div>
+            <ul className="ef-column-list">
+              {QUICK_LINKS.map((link) => (
+                <li key={link.label}>
+                  <button 
+                    className="ef-column-link font-body"
+                    onClick={() => navigate(link.path)}
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           <div className="ef-column">
             <div className="ef-column-heading font-body">Visit</div>
             <p className="ef-address font-body">
-              412 Old Pasture Road
+              Nagole
               <br />
-              Hollow Creek Valley
+              Hyderabad,India
             </p>
             <p className="ef-address font-body">
-              hello@earthbound.farm
+              Stackly@organic.com
               <br />
-              (555) 014-2298
+              (+91) 7891528801
             </p>
           </div>
         </div>
@@ -108,12 +116,18 @@ export default function Footer({ logoSrc = LOGO_SRC, logoAlt = "Farm logo" }) {
           © {year} Earthbound Farm. All rights reserved.
         </span>
         <div className="ef-legal">
-          <a href="#" className="ef-legal-link font-body">
+          <button 
+            className="ef-legal-link font-body"
+            onClick={() => handleNavigate('/privacy')}
+          >
             Privacy
-          </a>
-          <a href="#" className="ef-legal-link font-body">
+          </button>
+          <button 
+            className="ef-legal-link font-body"
+            onClick={() => handleNavigate('/terms')}
+          >
             Terms
-          </a>
+          </button>
         </div>
       </div>
     </footer>

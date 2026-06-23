@@ -1,167 +1,292 @@
 /* ============================================================
    Earthbound — Footer styles
-   Depends on the shared tokens/utilities (.liquid-glass,
-   .font-heading, .font-body, --color-linen, --color-moss) defined
-   in EarthboundLanding.css. Import that file once at the app root
-   alongside this one.
+   Enhanced with Quick Links, button styles, and responsiveness
    ============================================================ */
 
 .ef-footer {
-  background: #0e120a;
-  padding: 4rem 2rem 2rem;
+  background: var(--color-dark);
+  border-top: 1px solid rgba(245, 240, 225, 0.06);
+  padding: 3rem 1rem 1.5rem;
 }
 
-@media (min-width: 768px) {
-  .ef-footer { padding: 5rem 4rem 2rem; }
+@media (min-width: 640px) {
+  .ef-footer {
+    padding: 3rem 2rem 1.5rem;
+  }
 }
 
 @media (min-width: 1024px) {
-  .ef-footer { padding: 5rem 5rem 2rem; }
+  .ef-footer {
+    padding: 4rem 4rem 2rem;
+  }
 }
 
+/* ---------- Top Section ---------- */
 .ef-top {
-  border-radius: 1.5rem;
-  padding: 3rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
+  gap: 2.5rem;
+  background: rgba(245, 240, 225, 0.02);
+  border: 1px solid rgba(245, 240, 225, 0.06);
+  border-radius: 1.5rem;
+  padding: 2rem 1.5rem;
 }
 
 @media (min-width: 768px) {
   .ef-top {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-    padding: 3.5rem;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    padding: 2.5rem;
   }
 }
 
-/* ---------- Brand block ---------- */
+@media (min-width: 1024px) {
+  .ef-top {
+    padding: 3.5rem;
+    gap: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ef-top {
+    padding: 1.25rem 1rem;
+    gap: 1.5rem;
+    border-radius: 1rem;
+  }
+}
+
+/* ---------- Brand Section ---------- */
 .ef-brand {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.25rem;
-  max-width: 28rem;
+  
+  gap: 1rem;
 }
 
 .ef-logo {
-  width: 56px;
-  height: 56px;
+  width: 40px;
+  height: 40px;
   border-radius: 9999px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  background: black;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.ef-logo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 640px) {
+  .ef-logo {
+    width: 60px;
+    height: 60px;
+    padding: 7px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ef-logo {
+    width: 68px;
+    height: 68px;
+    padding: 8px;
+  }
 }
 
 .ef-logo-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 9999px;
+    
   display: block;
+  filter: invert(1);
 }
 
 .ef-logo-placeholder {
   color: var(--color-linen);
-  font-size: 1.75rem;
+  font-size: 1.5rem;
+
   font-style: italic;
   text-transform: lowercase;
 }
 
 .ef-brand-text {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
+  color: rgba(245, 240, 225, 0.55);
+  line-height: 1.6;
   font-weight: 300;
-  line-height: 1.5;
-  color: rgba(245, 240, 225, 0.85);
+  max-width: 320px;
+}
+
+@media (max-width: 768px) {
+  .ef-brand-text {
+    font-size: 0.8rem;
+    max-width: 100%;
+  }
 }
 
 .ef-cta {
-  border-radius: 9999px;
-  background: var(--color-linen);
-  color: var(--color-moss);
-  padding: 0.625rem 1.25rem;
-  font-size: 0.875rem;
-  font-weight: 500;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  text-decoration: none;
+  padding: 0.55rem 1.25rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--color-sage), var(--color-wheat));
+  color: var(--color-moss);
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  width: fit-content;
 }
 
-/* ---------- Link columns ---------- */
+.ef-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(122, 140, 74, 0.3);
+}
+
+@media (max-width: 480px) {
+  .ef-cta {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ---------- Columns Section ---------- */
 .ef-columns {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
 }
 
 @media (min-width: 640px) {
-  .ef-columns { grid-template-columns: repeat(4, 1fr); }
+  .ef-columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ef-columns {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ef-columns {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
 }
 
 .ef-column {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .ef-column-heading {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-linen);
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 1.5px;
+  color: rgba(245, 240, 225, 0.25);
+  font-weight: 600;
+  margin-bottom: 0.1rem;
 }
 
 .ef-column-list {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.3rem;
 }
 
 .ef-column-link {
-  font-size: 0.875rem;
-  color: rgba(245, 240, 225, 0.75);
-  text-decoration: none;
+  background: none;
+  border: none;
+  color: rgba(245, 240, 225, 0.45);
+  font-size: 0.85rem;
   font-weight: 300;
+  transition: all 0.3s ease;
+  padding: 0.1rem 0;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  width: fit-content;
 }
 
 .ef-column-link:hover {
   color: var(--color-linen);
+  transform: translateX(4px);
 }
 
 .ef-address {
-  font-size: 0.875rem;
-  color: rgba(245, 240, 225, 0.75);
+  font-size: 0.85rem;
+  color: rgba(245, 240, 225, 0.45);
   font-weight: 300;
-  line-height: 1.5;
+  line-height: 1.6;
   margin: 0;
 }
 
-/* ---------- Bottom bar ---------- */
+.ef-address:not(:last-child) {
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 480px) {
+  .ef-column-link {
+    font-size: 0.8rem;
+  }
+  
+  .ef-address {
+    font-size: 0.8rem;
+  }
+}
+
+/* ---------- Bottom Section ---------- */
 .ef-bottom {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.5rem 0.5rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  margin-top: 2rem;
-  text-align: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-top: 1px solid rgba(245, 240, 225, 0.04);
+  margin-top: 1.5rem;
 }
 
 @media (min-width: 640px) {
   .ef-bottom {
     flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
+    padding: 1.5rem 1rem 0;
+    margin-top: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ef-bottom {
+    padding: 2rem 2rem 0;
   }
 }
 
 .ef-copyright {
-  font-size: 0.8125rem;
-  color: rgba(245, 240, 225, 0.6);
+  font-size: 0.75rem;
+  color: rgba(245, 240, 225, 0.2);
   font-weight: 300;
 }
 
@@ -171,12 +296,80 @@
 }
 
 .ef-legal-link {
-  font-size: 0.8125rem;
-  color: rgba(245, 240, 225, 0.6);
-  text-decoration: none;
-  font-weight: 300;
+  background: none;
+  border: none;
+  font-size: 0.75rem;
+  color: rgba(245, 240, 225, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  padding: 0.1rem 0;
 }
 
 .ef-legal-link:hover {
   color: var(--color-linen);
+}
+
+@media (max-width: 480px) {
+  .ef-copyright {
+    font-size: 0.65rem;
+  }
+  
+  .ef-legal-link {
+    font-size: 0.65rem;
+  }
+  
+  .ef-bottom {
+    padding: 1rem 0.5rem 0;
+    gap: 0.5rem;
+  }
+}
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .ef-logo,
+  .ef-cta,
+  .ef-column-link,
+  .ef-legal-link {
+    transition: none !important;
+  }
+  
+  .ef-logo:hover {
+    transform: none !important;
+  }
+  
+  .ef-cta:hover {
+    transform: none !important;
+  }
+}
+
+/* ---------- Print ---------- */
+@media print {
+  .ef-footer {
+    background: white !important;
+    border-top: 1px solid #ddd !important;
+    padding: 20px !important;
+  }
+  
+  .ef-top {
+    background: white !important;
+    border: 1px solid #ddd !important;
+  }
+  
+  .ef-logo {
+    background: white !important;
+    box-shadow: none !important;
+  }
+  
+  .ef-cta,
+  .ef-column-link,
+  .ef-legal-link {
+    display: none !important;
+  }
+  
+  .ef-brand-text,
+  .ef-address,
+  .ef-copyright {
+    color: #333 !important;
+  }
 }

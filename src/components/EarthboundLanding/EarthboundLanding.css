@@ -507,7 +507,7 @@ html, body {
 }
 
 .eb-badge {
-  margin-top: 40px;
+  margin-top: 3rem;
   border-radius: 9999px;
   display: inline-flex;
   align-items: center;
@@ -624,6 +624,33 @@ html, body {
     width: 100%;
     gap: var(--spacing-sm);
   }
+}
+
+/* ============================================================
+   WHITE ICONS ONLY - Stat Cards
+   ============================================================ */
+
+/* Target only SVG icons inside stat cards */
+.eb-stat-card svg {
+  stroke: #ffffff !important;
+  fill: #ffffff !important;
+  color: #ffffff !important;
+  opacity: 0.9;
+}
+
+/* Target all SVG child elements */
+.eb-stat-card svg * {
+  stroke: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+/* For icons that use currentColor */
+.eb-stat-card svg path,
+.eb-stat-card svg circle,
+.eb-stat-card svg polygon,
+.eb-stat-card svg rect {
+  stroke: #ffffff !important;
+  fill: #ffffff !important;
 }
 
 .eb-cta-primary {

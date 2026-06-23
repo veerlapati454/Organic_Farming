@@ -139,6 +139,8 @@
 .page-harvest .page-badge {
   display: inline-block;
   font-size: 0.8rem;
+    margin-top: 4rem;
+
   color: var(--color-sage);
   letter-spacing: 3px;
   margin-bottom: 1rem;

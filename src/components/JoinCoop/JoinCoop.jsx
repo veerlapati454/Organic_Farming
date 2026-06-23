@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import "./JoinCoop.css";
 import herobg from "../../assets/bg4.webp";
 import farmer from "../../assets/farmer.webp";
@@ -14,6 +15,7 @@ const JOIN_IMAGES = {
 };
 
 function JoinCoop() {
+  const navigate = useNavigate();
   const [formStep, setFormStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
@@ -23,16 +25,100 @@ function JoinCoop() {
     message: '',
     hearAbout: '',
   });
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    phone: '',
+  });
 
   const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    let processedValue = value;
+
+    // Name: only allow alphabets and spaces
+    if (name === 'name') {
+      processedValue = value.replace(/[^a-zA-Z\s]/g, '');
+      // Clear error when user types
+      if (errors.name) {
+        setErrors({ ...errors, name: '' });
+      }
+    }
+
+    // Email: only allow Gmail format
+    if (name === 'email') {
+      processedValue = value.toLowerCase();
+      // Clear error when user types
+      if (errors.email) {
+        setErrors({ ...errors, email: '' });
+      }
+    }
+
+    // Phone: only allow numbers and +, -, spaces
+    if (name === 'phone') {
+      // Allow only numbers, +, -, and spaces for phone
+      processedValue = value.replace(/[^0-9+\-\s]/g, '');
+      if (errors.phone) {
+        setErrors({ ...errors, phone: '' });
+      }
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: processedValue
     });
   };
 
+  const validateStep1 = () => {
+    let isValid = true;
+    const newErrors = { name: '', email: '', phone: '' };
+
+    // Validate Name - alphabets only
+    if (!formData.name.trim()) {
+      newErrors.name = 'Full name is required';
+      isValid = false;
+    } else if (!/^[a-zA-Z\s]+$/.test(formData.name)) {
+      newErrors.name = 'Name can only contain letters and spaces';
+      isValid = false;
+    } else if (formData.name.length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
+      isValid = false;
+    }
+
+    // Validate Email - Gmail only
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+      isValid = false;
+    } else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(formData.email)) {
+      newErrors.email = 'Please use a valid Gmail address (example@gmail.com)';
+      isValid = false;
+    }
+
+    // Validate Phone - optional but must be valid if provided
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+      isValid = false;
+    } 
+    if (formData.phone.trim()) {
+      const phoneDigits = formData.phone.replace(/[^0-9]/g, '');
+      if (phoneDigits.length < 10) {
+        newErrors.phone = 'Please enter a valid phone number (minimum 10 digits)';
+        isValid = false;
+      }
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
   const nextStep = () => {
-    if (formStep < 3) setFormStep(formStep + 1);
+    if (formStep === 1) {
+      // Validate step 1 before proceeding
+      if (validateStep1()) {
+        if (formStep < 3) setFormStep(formStep + 1);
+      }
+    } else {
+      if (formStep < 3) setFormStep(formStep + 1);
+    }
   };
 
   const prevStep = () => {
@@ -41,9 +127,8 @@ function JoinCoop() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
-    alert('Thank you for your interest! We will contact you soon.');
+    // Navigate to 404 instead of showing alert
+    navigate('/404');
   };
 
   const benefits = [
@@ -150,6 +235,7 @@ function JoinCoop() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
+                onClick={() => navigate('/404')}
               >
                 <div className="join-benefit-icon">{benefit.icon}</div>
                 <h3 className="join-benefit-title font-heading">{benefit.title}</h3>
@@ -191,7 +277,7 @@ function JoinCoop() {
                     </li>
                   ))}
                 </ul>
-                <button className={`join-tier-btn ${tier.popular ? 'primary' : ''}`}>
+                <button className={`join-tier-btn ${tier.popular ? 'primary' : ''}`} onClick={() => navigate('/404')}>
                   Choose {tier.name}
                 </button>
               </motion.div>
@@ -227,37 +313,51 @@ function JoinCoop() {
                     <input
                       type="text"
                       name="name"
-                      className="join-form-input"
-                      placeholder="John Doe"
+                      className={`join-form-input ${errors.name ? 'error' : ''}`}
+                      placeholder="John Doe (letters only)"
                       value={formData.name}
                       onChange={handleInputChange}
                       required
                     />
+                    {errors.name && (
+                      <span className="join-form-error">{errors.name}</span>
+                    )}
                   </div>
                   <div className="join-form-group">
                     <label className="join-form-label">Email Address *</label>
                     <input
                       type="email"
                       name="email"
-                      className="join-form-input"
-                      placeholder="john@example.com"
+                      className={`join-form-input ${errors.email ? 'error' : ''}`}
+                      placeholder="example@gmail.com"
                       value={formData.email}
                       onChange={handleInputChange}
                       required
                     />
+                    {errors.email && (
+                      <span className="join-form-error">{errors.email}</span>
+                    )}
                   </div>
                   <div className="join-form-group">
                     <label className="join-form-label">Phone Number</label>
                     <input
                       type="tel"
                       name="phone"
-                      className="join-form-input"
-                      placeholder="(555) 123-4567"
+                      className={`join-form-input ${errors.phone ? 'error' : ''}`}
+                      placeholder="+91 9876543210"
                       value={formData.phone}
                       onChange={handleInputChange}
+                      required
                     />
+                    {errors.phone && (
+                      <span className="join-form-error">{errors.phone}</span>
+                    )}
                   </div>
-                  <button type="button" className="join-form-next" onClick={nextStep}>
+                  <button 
+                    type="button" 
+                    className="join-form-next" 
+                    onClick={nextStep}
+                  >
                     Next Step →
                   </button>
                 </motion.div>

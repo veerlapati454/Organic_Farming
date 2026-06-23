@@ -74,6 +74,8 @@
 
 .page-visit .page-title {
   font-size: var(--font-6xl);
+    margin-top: 40px;
+
   line-height: 1;
   color: var(--color-linen);
   margin-bottom: 1.5rem;

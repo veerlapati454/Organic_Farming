@@ -71,6 +71,8 @@
 .page-practices .page-title {
   font-size: var(--font-6xl);
   line-height: 1;
+    margin-top: 40px;
+
   color: var(--color-linen);
   margin-bottom: 1.5rem;
   font-style: italic;

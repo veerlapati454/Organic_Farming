@@ -14,11 +14,12 @@ import Login from "./components/Login/Login";
 import UserDashboard from "./components/UserDashboard/Userdashboard";
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 import NotFound from "./components/NotFound/NotFound";
+import ScrollToTop from "./components/ScrollToTop"
 
 function App() {
   return (
     <HashRouter>
-
+      <ScrollToTop/>
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<EarthboundLanding />} />

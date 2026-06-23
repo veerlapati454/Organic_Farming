@@ -6,6 +6,7 @@ import herobg3 from "../../assets/herobg3.webp";
 import greenhouse from "../../assets/greenhouse.webp";
 import farmer from "../../assets/farmer.webp";
 import "./VisitFarm.css"
+import { useNavigate } from "react-router-dom";
 
 const VISIT_IMAGES = {
   hero: herobg1,
@@ -17,6 +18,7 @@ const VISIT_IMAGES = {
 
 function VisitFarm() {
   const [activeTab, setActiveTab] = useState("visit");
+  const navigate=useNavigate();
 
   const visitInfo = {
     visit: {
@@ -24,7 +26,7 @@ function VisitFarm() {
       description: "We welcome visitors to experience the farm and connect with where their food comes from.",
       details: [
         { label: "Hours", value: "Tuesday - Sunday, 9am - 5pm" },
-        { label: "Location", value: "123 Valley Road, Farmtown" },
+        { label: "Location", value: "Hyderabad,India" },
         { label: "Admission", value: "Free (donations welcome)" },
         { label: "Parking", value: "On-site parking available" },
       ],
@@ -137,7 +139,7 @@ function VisitFarm() {
                 </motion.div>
               ))}
             </div>
-            <button className="visit-cta">Book Now</button>
+            <button className="visit-cta" onClick={()=>navigate("/404")}>Book Now</button>
           </div>
           <div className="visit-image">
             <div className="visit-image-container" style={{ backgroundImage: `url(${VISIT_IMAGES.greenhouse})` }}>
@@ -184,8 +186,8 @@ function VisitFarm() {
               <div className="visit-map-content">
                 <span className="visit-map-marker">📍</span>
                 <h3 className="visit-map-title font-heading">Find Us</h3>
-                <p className="visit-map-address font-body">123 Valley Road, Farmtown</p>
-                <button className="visit-map-btn">Get Directions</button>
+                <p className="visit-map-address font-body">Hyderabad,India</p>
+                <button className="visit-map-btn" onClick={()=>navigate("/404")}>Get Directions</button>
               </div>
             </div>
           </div>

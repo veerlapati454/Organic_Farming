@@ -94,6 +94,7 @@
 .page-fields .page-title {
   font-size: clamp(2.5rem, 6vw, 5rem);
   line-height: 1.1;
+  margin-top: 2rem;
   color: var(--color-linen);
   margin-bottom: 1rem;
   font-style: italic;

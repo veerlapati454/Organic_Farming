@@ -45,7 +45,7 @@ export default function Header() {
     { name: "Harvest",        path: "/harvest" },
     { name: "Practices",      path: "/practices" },
     { name: "Visit the Farm", path: "/visit" },
-    { name:"SignUp",          path:"/signup" }
+    { name:"Login",          path:"/login" }
   ];
 
   const closeMenu = () => setIsMenuOpen(false);

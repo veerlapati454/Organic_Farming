@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import "./EarthboundLanding.css";
 import herobg from "../../assets/herobg.webp"
 import herobg1 from "../../assets/herobg1.webp"
@@ -19,7 +20,7 @@ import produce from "../../assets/produce.webp"
 
 /* ============================================================
    Earthbound — Organic Farming Landing Page
-   ENHANCED VERSION with more content, animations, and images
+   ENHANCED VERSION with all buttons navigating to 404
    ============================================================ */
 
 /* ----------------------------------------------------------------
@@ -362,6 +363,8 @@ function OrganicDivider({ flip = false }) {
 
 // ===== HERO SECTION =====
 function Hero() {
+  const navigate = useNavigate();
+  
   return (
     <section className="eb-section eb-hero">
       <HeroSlideshow />
@@ -396,6 +399,7 @@ function Hero() {
               className="eb-cta-primary liquid-glass-strong font-body"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/404')}
             >
               Shop the Harvest
               <ArrowUpRight />
@@ -404,6 +408,7 @@ function Hero() {
               className="eb-cta-secondary font-body"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/404')}
             >
               <Play />
               Walk the Fields
@@ -422,6 +427,7 @@ function Hero() {
                 className="eb-stat-card liquid-glass"
                 whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
+                onClick={() => navigate('/404')}
               >
                 {stat.icon}
                 <div className="eb-stat-number font-heading">{stat.number}</div>
@@ -442,6 +448,7 @@ function Hero() {
                   key={name}
                   className="eb-partner-name font-heading"
                   whileHover={{ scale: 1.1, color: "var(--color-wheat)" }}
+                  onClick={() => navigate('/404')}
                 >
                   {name}
                 </motion.span>
@@ -458,6 +465,8 @@ function Hero() {
 
 // ===== FEATURES SECTION =====
 function Features() {
+  const navigate = useNavigate();
+  
   const features = [
     {
       icon: <IconLeaf />,
@@ -500,7 +509,7 @@ function Features() {
         <div className="eb-features-grid">
           {features.map((feature, index) => (
             <ScrollReveal key={index} delay={index * 0.1}>
-              <MagneticCard className="eb-feature-card">
+              <MagneticCard className="eb-feature-card" onClick={() => navigate('/404')}>
                 <motion.div
                   className="eb-feature-icon liquid-glass"
                   whileHover={{ rotate: 360, scale: 1.1 }}
@@ -523,6 +532,8 @@ function Features() {
 
 // ===== SEASONAL PRODUCE SECTION =====
 function SeasonalProduce() {
+  const navigate = useNavigate();
+  
   const produce = [
     { name: "Heirloom Tomatoes", season: "Summer", image: tomatoes, description: "Rich, flavorful, and bursting with color" },
     { name: "Organic Greens", season: "Spring-Fall", image: vegetables, description: "Fresh, crisp, and nutrient-dense" },
@@ -554,6 +565,7 @@ function SeasonalProduce() {
                 style={{ backgroundImage: `url(${item.image})` }}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.4 }}
+                onClick={() => navigate('/404')}
               >
                 <div className="eb-produce-card-overlay" />
                 <div className="eb-produce-card-content">
@@ -598,8 +610,10 @@ const CARDS = [
 ];
 
 function CapabilityCard({ Icon, title, body, tags, image, index }) {
+  const navigate = useNavigate();
+  
   return (
-    <ScrollReveal className="eb-card liquid-glass" delay={index * 0.1}>
+    <ScrollReveal className="eb-card liquid-glass" delay={index * 0.1} onClick={() => navigate('/404')}>
       <motion.div
         className="eb-card-image"
         style={{ backgroundImage: `url(${image})` }}
@@ -669,6 +683,8 @@ function Capabilities() {
 
 // ===== TESTIMONIALS SECTION =====
 function Testimonials() {
+  const navigate = useNavigate();
+  
   const testimonials = [
     {
       quote: "The best produce I've ever tasted. You can literally taste the soil health in every bite.",
@@ -708,7 +724,7 @@ function Testimonials() {
 
         <div className="eb-testimonials-grid">
           {testimonials.map((item, index) => (
-            <ScrollReveal key={index} className="eb-testimonial-card liquid-glass" delay={index * 0.15}>
+            <ScrollReveal key={index} className="eb-testimonial-card liquid-glass" delay={index * 0.15} onClick={() => navigate('/404')}>
               <motion.div
                 className="eb-testimonial-quote"
                 initial={{ opacity: 0, scale: 0 }}
@@ -737,8 +753,10 @@ function Testimonials() {
   );
 }
 
-// ===== BLOG / JOURNAL SECTION (NEW) =====
+// ===== BLOG / JOURNAL SECTION =====
 function JournalSection() {
+  const navigate = useNavigate();
+  
   const articles = [
     {
       title: "The Soil Microbiome: Life Underground",
@@ -781,7 +799,7 @@ function JournalSection() {
 
         <div className="eb-journal-grid">
           {articles.map((article, index) => (
-            <ScrollReveal key={index} className="eb-journal-card" delay={index * 0.15}>
+            <ScrollReveal key={index} className="eb-journal-card" delay={index * 0.15} onClick={() => navigate('/404')}>
               <motion.div
                 className="eb-journal-image-card"
                 style={{ backgroundImage: `url(${article.image})` }}
@@ -800,6 +818,7 @@ function JournalSection() {
                 <motion.button 
                   className="eb-journal-readmore font-body"
                   whileHover={{ x: 5 }}
+                  onClick={() => navigate('/404')}
                 >
                   Read More <ArrowUpRight />
                 </motion.button>
@@ -816,6 +835,8 @@ function JournalSection() {
 
 // ===== CTA SECTION =====
 function CTASection() {
+  const navigate = useNavigate();
+  
   return (
     <section className="eb-section eb-cta-section">
       <div className="eb-cta-bg">
@@ -836,6 +857,7 @@ function CTASection() {
               className="eb-cta-primary-btn liquid-glass-strong font-body"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/404')}
             >
               Join the Co-op
               <ArrowUpRight />
@@ -844,20 +866,21 @@ function CTASection() {
               className="eb-cta-secondary-btn font-body"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/404')}
             >
               Learn More
             </motion.button>
           </div>
           <div className="eb-cta-benefits">
-            <div className="eb-cta-benefit">
+            <div className="eb-cta-benefit" onClick={() => navigate('/404')}>
               <IconLeaf />
               <span>Organic Certification</span>
             </div>
-            <div className="eb-cta-benefit">
+            <div className="eb-cta-benefit" onClick={() => navigate('/404')}>
               <IconHeart />
               <span>Community Support</span>
             </div>
-            <div className="eb-cta-benefit">
+            <div className="eb-cta-benefit" onClick={() => navigate('/404')}>
               <IconStar />
               <span>Farm-to-Table Access</span>
             </div>
