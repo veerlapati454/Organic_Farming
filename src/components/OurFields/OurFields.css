@@ -1,0 +1,491 @@
+/* ============================================================
+   FIELDS PAGE — FIXED VERSION
+   ============================================================ */
+
+.page-fields {
+  min-height: 100vh;
+  background: var(--color-dark);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* -------- Hero Section - Fixed -------- */
+.page-fields .page-hero {
+  min-height: 60vh;
+  max-height: 70vh;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.page-fields .page-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover !important;
+  background-position: center 30% !important;
+  background-repeat: no-repeat !important;
+  z-index: 0;
+}
+
+.page-fields .page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(14, 18, 10, 0.2) 0%,
+    rgba(14, 18, 10, 0.5) 40%,
+    rgba(14, 18, 10, 0.8) 70%,
+    rgba(14, 18, 10, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.page-fields .page-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+/* Hero text wrapper - better alignment */
+.page-fields .hero-text-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* -------- Badge -------- */
+.page-fields .page-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--color-sage);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  padding: 0.4rem 1.5rem;
+  background: rgba(122, 140, 74, 0.08);
+  border: 1px solid rgba(122, 140, 74, 0.1);
+  border-radius: 9999px;
+}
+
+.page-fields .page-badge .badge-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-sage);
+  margin-right: 8px;
+  vertical-align: middle;
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.5); opacity: 1; }
+}
+
+/* -------- Title - Fixed alignment -------- */
+.page-fields .page-title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.1;
+  color: var(--color-linen);
+  margin-bottom: 1rem;
+  font-style: italic;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.page-fields .page-title .page-highlight {
+  background: linear-gradient(135deg, var(--color-wheat), #f0e6d3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* -------- Subtitle - Fixed alignment -------- */
+.page-fields .page-subtitle {
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  color: rgba(245, 240, 225, 0.8);
+  line-height: 1.7;
+  max-width: 650px;
+  margin: 0 auto;
+  font-weight: 300;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* -------- REMOVED SCROLL INDICATOR -------- */
+/* .page-fields .scroll-indicator removed */
+
+/* -------- Content -------- */
+.page-fields .page-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 1024px) {
+  .page-fields .page-content { 
+    padding: 4rem 4rem 5rem; 
+  }
+}
+
+/* -------- Fields Grid -------- */
+.page-fields .fields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+/* -------- Card - Optimized -------- */
+.page-fields .field-card {
+  position: relative;
+  background: rgba(245, 240, 225, 0.02);
+  border: 1px solid rgba(245, 240, 225, 0.06);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  will-change: transform, opacity;
+}
+
+.page-fields .field-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(245, 240, 225, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.page-fields .field-card.dimmed {
+  opacity: 0.4;
+  transform: scale(0.97);
+}
+
+/* -------- Card Image -------- */
+.page-fields .field-card-image {
+  height: 220px;
+  background-size: cover !important;
+  background-position: center !important;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s ease;
+}
+
+.page-fields .field-card:hover .field-card-image {
+  transform: scale(1.05);
+}
+
+.page-fields .field-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 20%,
+    rgba(14, 18, 10, 0.2) 50%,
+    rgba(14, 18, 10, 0.8) 80%,
+    rgba(14, 18, 10, 0.95) 100%
+  );
+}
+
+.page-fields .field-card-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.3rem 1rem;
+  background: rgba(14, 18, 10, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(245, 240, 225, 0.1);
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  color: var(--color-linen);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+/* -------- Card Content -------- */
+.page-fields .field-card-content {
+  padding: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.page-fields .field-card-name {
+  font-size: var(--font-xl);
+  color: var(--color-linen);
+  font-style: italic;
+  margin-bottom: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.page-fields .field-card:hover .field-card-name {
+  color: var(--color-wheat);
+}
+
+.page-fields .field-card-crop {
+  font-size: var(--font-sm);
+  color: var(--color-sage);
+  margin-bottom: 0.75rem;
+  display: inline-block;
+  padding: 0.15rem 0.75rem;
+  background: rgba(122, 140, 74, 0.1);
+  border-radius: 9999px;
+}
+
+.page-fields .field-card-description {
+  font-size: var(--font-sm);
+  color: rgba(245, 240, 225, 0.6);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* -------- Stats -------- */
+.page-fields .field-card-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(245, 240, 225, 0.06);
+}
+
+.page-fields .field-stat {
+  text-align: center;
+  padding: 0.5rem;
+  background: rgba(245, 240, 225, 0.02);
+  border-radius: 0.5rem;
+}
+
+.page-fields .field-stat-label {
+  display: block;
+  font-size: 0.6rem;
+  color: rgba(245, 240, 225, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.page-fields .field-stat-value {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-linen);
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+/* -------- Map Section -------- */
+.page-fields .field-map-section {
+  margin-top: 3rem;
+}
+
+.page-fields .section-title {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  color: var(--color-linen);
+  font-style: italic;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.page-fields .section-title .highlight {
+  background: linear-gradient(135deg, var(--color-wheat), #f0e6d3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-fields .field-map {
+  background: rgba(245, 240, 225, 0.02);
+  border: 1px solid rgba(245, 240, 225, 0.06);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  overflow-x: auto;
+}
+
+.page-fields .field-map-grid {
+  display: grid;
+  grid-template-columns: 80px repeat(3, 1fr);
+  gap: 0.75rem;
+  min-width: 480px;
+}
+
+.page-fields .map-year {
+  font-weight: 600;
+  color: var(--color-linen);
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  border-bottom: 2px solid rgba(122, 140, 74, 0.2);
+}
+
+.page-fields .map-field {
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  color: var(--color-linen);
+  font-size: 0.85rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.page-fields .map-field:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Map Legend */
+.page-fields .map-legend {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-top: 1px solid rgba(245, 240, 225, 0.06);
+  flex-wrap: wrap;
+}
+
+.page-fields .map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: rgba(245, 240, 225, 0.5);
+}
+
+.page-fields .map-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 240, 225, 0.1);
+}
+
+/* -------- RESPONSIVE FIXES -------- */
+
+/* Tablet and Mobile */
+@media (max-width: 1024px) {
+  .page-fields .page-hero {
+    min-height: 50vh;
+    max-height: 60vh;
+  }
+  
+  .page-fields .page-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .page-fields .page-hero {
+    min-height: 45vh;
+    max-height: 55vh;
+    padding: 2rem 1rem;
+  }
+  
+  .page-fields .page-hero-content {
+    padding: 1.5rem 1rem;
+  }
+  
+  .page-fields .page-title {
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    margin-bottom: 0.75rem;
+  }
+  
+  .page-fields .page-subtitle {
+    font-size: 0.95rem;
+    padding: 0 0.5rem;
+  }
+  
+  .page-fields .page-badge {
+    font-size: 0.7rem;
+    padding: 0.3rem 1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .page-fields .fields-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .page-fields .field-card-image {
+    height: 200px;
+  }
+  
+  .page-fields .page-content {
+    padding: 2rem 1rem 3rem;
+  }
+  
+  .page-fields .field-map-grid {
+    grid-template-columns: 60px repeat(3, 1fr);
+    font-size: 0.7rem;
+    min-width: 380px;
+    gap: 0.5rem;
+  }
+  
+  .page-fields .map-field {
+    font-size: 0.7rem;
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-fields .page-hero {
+    min-height: 40vh;
+    max-height: 50vh;
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .page-fields .page-title {
+    font-size: clamp(1.5rem, 8vw, 2.2rem);
+  }
+  
+  .page-fields .page-subtitle {
+    font-size: 0.85rem;
+    padding: 0 0.25rem;
+  }
+  
+  .page-fields .page-badge {
+    font-size: 0.6rem;
+    padding: 0.25rem 0.75rem;
+  }
+  
+  .page-fields .field-card-image {
+    height: 180px;
+  }
+  
+  .page-fields .field-card-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.25rem;
+  }
+  
+  .page-fields .field-stat-value {
+    font-size: 0.85rem;
+  }
+  
+  .page-fields .field-map-grid {
+    min-width: 320px;
+    gap: 0.3rem;
+  }
+  
+  .page-fields .map-field {
+    font-size: 0.6rem;
+    padding: 0.4rem;
+  }
+  
+  .page-fields .map-legend {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .page-fields .section-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* Remove scroll indicator */
+.page-fields .scroll-indicator {
+  display: none !important;
+}

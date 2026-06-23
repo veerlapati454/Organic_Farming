@@ -1,0 +1,469 @@
+/* ============================================================
+   PRACTICES PAGE - Advanced Styles
+   ============================================================ */
+
+.page-practices {
+  min-height: 100vh;
+  background: var(--color-dark);
+}
+
+/* ---------- Hero - FIXED ---------- */
+.page-practices .page-hero {
+  min-height: 50vh;
+  max-height: 65vh;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.page-practices .page-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover !important;
+  background-position: center 35% !important;
+  background-repeat: no-repeat !important;
+  z-index: 0;
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+.page-practices .page-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(14, 18, 10, 0.2) 0%,
+    rgba(14, 18, 10, 0.5) 40%,
+    rgba(14, 18, 10, 0.8) 70%,
+    rgba(14, 18, 10, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.page-practices .page-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.page-practices .page-badge {
+  display: inline-block;
+  font-size: 0.875rem;
+  color: var(--color-sage);
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  padding: 0.4rem 1.2rem;
+  
+}
+
+.page-practices .page-title {
+  font-size: var(--font-6xl);
+  line-height: 1;
+  color: var(--color-linen);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.page-practices .page-highlight {
+  color: var(--color-wheat);
+}
+
+.page-practices .page-subtitle {
+  font-size: var(--font-base);
+  color: rgba(245, 240, 225, 0.85);
+  line-height: 1.7;
+  max-width: 650px;
+  margin: 0 auto;
+  font-weight: 300;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .page-practices .page-title {
+    font-size: var(--font-5xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .page-practices .page-hero {
+    min-height: 40vh;
+    max-height: 60vh;
+    padding: 3rem 1.5rem;
+  }
+  
+  .page-practices .page-title {
+    font-size: var(--font-4xl);
+  }
+  
+  .page-practices .page-subtitle {
+    font-size: var(--font-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-practices .page-hero {
+    min-height: 35vh;
+    max-height: 50vh;
+    padding: 2rem 1rem;
+  }
+  
+  .page-practices .page-title {
+    font-size: var(--font-3xl);
+  }
+}
+
+/* ---------- Content ---------- */
+.page-practices .page-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+@media (min-width: 1024px) {
+  .page-practices .page-content {
+    padding: 3rem 4rem 4rem;
+  }
+}
+
+/* ---------- Practices Grid ---------- */
+.page-practices .practices-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .page-practices .practices-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Practice Cards ---------- */
+.page-practices .practice-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: rgba(245, 240, 225, 0.02);
+  border: 1px solid rgba(245, 240, 225, 0.06);
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-practices .practice-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(122, 140, 74, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.page-practices .practice-card:hover::before {
+  opacity: 1;
+}
+
+.page-practices .practice-card:hover {
+  transform: translateX(8px) scale(1.01);
+  border-color: rgba(245, 240, 225, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.page-practices .practice-card.active {
+  background: rgba(245, 240, 225, 0.06);
+  border-color: var(--color-sage);
+  box-shadow: 0 0 40px rgba(122, 140, 74, 0.05);
+}
+
+.page-practices .practice-card.active::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--color-sage);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 0 20px rgba(122, 140, 74, 0.3);
+}
+
+.page-practices .practice-card-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+  transition: transform 0.4s ease;
+}
+
+.page-practices .practice-card:hover .practice-card-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.page-practices .practice-card-title {
+  font-size: var(--font-base);
+  color: var(--color-linen);
+  font-style: italic;
+  margin-bottom: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.page-practices .practice-card:hover .practice-card-title {
+  color: var(--color-wheat);
+}
+
+.page-practices .practice-card-desc {
+  font-size: var(--font-sm);
+  color: rgba(245, 240, 225, 0.6);
+  line-height: 1.4;
+}
+
+/* ---------- Practice Detail ---------- */
+.page-practices .practice-detail {
+  background: rgba(245, 240, 225, 0.02);
+  border: 1px solid rgba(245, 240, 225, 0.06);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.page-practices .practice-detail:hover {
+  transform: rotateY(2deg) rotateX(2deg);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4);
+}
+
+.page-practices .practice-detail-image {
+  height: 220px;
+  background-size: cover !important;
+  background-position: center !important;
+  position: relative;
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.page-practices .practice-detail:hover .practice-detail-image {
+  transform: scale(1.05);
+}
+
+.page-practices .practice-detail-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(14, 18, 10, 0.8) 100%);
+}
+
+.page-practices .practice-detail-content {
+  padding: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.page-practices .practice-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.page-practices .practice-detail-icon {
+  font-size: 2.5rem;
+  transition: transform 0.4s ease;
+}
+
+.page-practices .practice-detail:hover .practice-detail-icon {
+  transform: rotate(360deg) scale(1.1);
+}
+
+.page-practices .practice-detail-title {
+  font-size: var(--font-2xl);
+  color: var(--color-linen);
+  font-style: italic;
+  transition: color 0.3s ease;
+}
+
+.page-practices .practice-detail:hover .practice-detail-title {
+  color: var(--color-wheat);
+}
+
+.page-practices .practice-detail-desc {
+  font-size: var(--font-sm);
+  color: rgba(245, 240, 225, 0.7);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- Principles ---------- */
+.page-practices .practice-principles {
+  margin-bottom: 1.5rem;
+}
+
+.page-practices .practice-principles-title {
+  font-size: var(--font-sm);
+  color: var(--color-linen);
+  margin-bottom: 0.75rem;
+  font-style: italic;
+}
+
+.page-practices .practice-principles-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .page-practices .practice-principles-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.page-practices .practice-principle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  color: rgba(245, 240, 225, 0.7);
+  font-size: var(--font-sm);
+  background: rgba(245, 240, 225, 0.02);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(245, 240, 225, 0.04);
+  transition: all 0.3s ease;
+}
+
+.page-practices .practice-principle:hover {
+  background: rgba(245, 240, 225, 0.05);
+  border-color: rgba(245, 240, 225, 0.08);
+  transform: translateX(4px);
+}
+
+.page-practices .practice-principle-icon {
+  color: var(--color-sage);
+  font-size: 0.8rem;
+}
+
+/* ---------- Impact ---------- */
+.page-practices .practice-impact {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, rgba(122, 140, 74, 0.1), rgba(122, 140, 74, 0.02));
+  border-radius: 0.75rem;
+  border: 1px solid rgba(122, 140, 74, 0.1);
+  transition: all 0.3s ease;
+}
+
+.page-practices .practice-impact:hover {
+  background: rgba(122, 140, 74, 0.15);
+  transform: scale(1.02);
+}
+
+.page-practices .practice-impact-label {
+  font-size: var(--font-xs);
+  color: rgba(245, 240, 225, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.page-practices .practice-impact-value {
+  font-size: var(--font-sm);
+  color: var(--color-linen);
+  font-weight: 500;
+}
+
+/* ---------- Stats ---------- */
+.page-practices .practice-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .page-practices .practice-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.page-practices .practice-stat {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(245, 240, 225, 0.02);
+  border: 1px solid rgba(245, 240, 225, 0.06);
+  border-radius: 1rem;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-practices .practice-stat::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(122, 140, 74, 0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.page-practices .practice-stat:hover::before {
+  opacity: 1;
+}
+
+.page-practices .practice-stat:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(245, 240, 225, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.page-practices .practice-stat-number {
+  font-size: var(--font-4xl);
+  color: var(--color-wheat);
+  font-weight: 700;
+  font-style: italic;
+  background: linear-gradient(135deg, var(--color-wheat), var(--color-amber));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-practices .practice-stat-label {
+  font-size: var(--font-sm);
+  color: rgba(245, 240, 225, 0.6);
+  margin-top: 0.25rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+  .page-practices .practices-grid {
+    gap: 1rem;
+  }
+  .page-practices .practice-card {
+    padding: 1rem;
+  }
+  .page-practices .practice-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .page-practices .practice-stat {
+    padding: 1rem;
+  }
+  .page-practices .practice-stat-number {
+    font-size: var(--font-3xl);
+  }
+  .page-practices .practice-detail-image {
+    height: 160px;
+  }
+}
