@@ -86,60 +86,29 @@ function NotFound() {
         <div className="notfound-floating-elements">
           <motion.div
             className="notfound-float-element notfound-float-1"
-            animate={{
-              y: [0, -20, 0],
-              rotate: [0, 10, -10, 0],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            animate={{ y: [0, -20, 0], rotate: [0, 10, -10, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
             🌱
           </motion.div>
           <motion.div
             className="notfound-float-element notfound-float-2"
-            animate={{
-              y: [0, 20, 0],
-              rotate: [0, -10, 10, 0],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1,
-            }}
+            animate={{ y: [0, 20, 0], rotate: [0, -10, 10, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
           >
             🌾
           </motion.div>
           <motion.div
             className="notfound-float-element notfound-float-3"
-            animate={{
-              y: [0, -15, 0],
-              rotate: [0, 15, -5, 0],
-            }}
-            transition={{
-              duration: 3.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5,
-            }}
+            animate={{ y: [0, -15, 0], rotate: [0, 15, -5, 0] }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
           >
             🌻
           </motion.div>
           <motion.div
             className="notfound-float-element notfound-float-4"
-            animate={{
-              y: [0, 18, 0],
-              rotate: [0, -15, 5, 0],
-            }}
-            transition={{
-              duration: 4.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1.5,
-            }}
+            animate={{ y: [0, 18, 0], rotate: [0, -15, 5, 0] }}
+            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
           >
             🍃
           </motion.div>
@@ -167,15 +136,21 @@ function NotFound() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
         >
-          <motion.button
+          {/*
+            Go Back: no whileHover/whileTap on this button.
+            whileTap causes Framer Motion to delay releasing the pointer
+            event until its scale animation completes — by that time the
+            dashboard has already mounted and the stray click lands on
+            the hamburger button, flashing the sidebar open then closed.
+            A plain button with a CSS :active style is safe instead.
+          */}
+          <button
             className="notfound-btn notfound-btn-back"
             onClick={handleGoBack}
-            whileHover={{ scale: 1.05, y: -3 }}
-            whileTap={{ scale: 0.95 }}
           >
             <span className="notfound-btn-icon">←</span>
             Go Back
-          </motion.button>
+          </button>
 
           <motion.button
             className="notfound-btn notfound-btn-home"

@@ -23,6 +23,15 @@ function Harvest() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const gridRef = useRef(null);
+  const isFirstRender = useRef(true);
+  const pageRef = useRef(null);
+
+  // Aggressively scroll to top — fires multiple times to beat animation shifts
+  useEffect(() => {
+  window.scrollTo(0, 0);
+  const id = setTimeout(() => window.scrollTo(0, 0), 100);
+  return () => clearTimeout(id);
+}, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -109,17 +118,26 @@ function Harvest() {
       ? harvestItems
       : harvestItems.filter((item) => item.season === selectedSeason);
 
-  // Smooth scroll to grid when filter changes
+  // Smooth scroll to grid when filter changes — skip on first render.
+  // NOTE: `isMobile` is intentionally NOT a dependency here. It used to be,
+  // which caused this effect to re-fire right after mount (when the resize
+  // listener flips isMobile from false -> true on a phone), triggering an
+  // unwanted scrollIntoView that skipped the hero section on page load.
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     if (gridRef.current && isMobile) {
       setTimeout(() => {
         gridRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 100);
     }
-  }, [selectedSeason, isMobile]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedSeason]);
 
   return (
-    <div className="page-container page-harvest">
+    <div className="page-container page-harvest" ref={pageRef}>
       <div className="page-hero">
         <div
           className="page-hero-bg"
@@ -136,7 +154,6 @@ function Harvest() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="page-badge">✦ FRESH HARVEST</span>
             <h1 className="page-title font-heading">
               From Field to<br />
               <span className="page-highlight">Your Table</span>

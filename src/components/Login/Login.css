@@ -608,6 +608,11 @@
     right: 0.4rem;
   }
 }
+/* Hide Edge/IE native password reveal button */
+.login-form-input::-ms-reveal,
+.login-form-input::-ms-clear {
+  display: none;
+}
 
 .login-password-toggle:hover {
   opacity: 1;
@@ -716,6 +721,7 @@
 .login-submit-btn:hover:not(:disabled) .login-submit-arrow {
   transform: translateX(4px);
 }
+
 
 /* ---------- Spinner ---------- */
 .login-spinner {

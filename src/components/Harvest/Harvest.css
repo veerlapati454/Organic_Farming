@@ -1,5 +1,5 @@
 /* ============================================================
-   HARVEST PAGE - Smooth Scrolling & Mobile Responsive
+   HARVEST PAGE - No Animations / No Transitions
    ============================================================ */
 
 * {
@@ -12,7 +12,8 @@
   min-height: 100vh;
   background: var(--color-dark);
   overflow-x: hidden;
-  scroll-behavior: smooth;
+  scroll-margin-top: 0;
+  overflow-anchor: none;
 }
 
 /* ---------- Hero ---------- */
@@ -34,17 +35,7 @@
   background-position: center 30% !important;
   background-repeat: no-repeat !important;
   z-index: 0;
-  animation: heroZoom 22s ease-in-out infinite alternate;
   filter: brightness(0.8) saturate(1.1);
-}
-
-@keyframes heroZoom {
-  0% {
-    transform: scale(1) rotate(0deg);
-  }
-  100% {
-    transform: scale(1.08) rotate(0.5deg);
-  }
 }
 
 .page-harvest .page-hero-overlay {
@@ -72,7 +63,6 @@
   filter: blur(80px);
   z-index: 1;
   pointer-events: none;
-  animation: orbFloat 12s ease-in-out infinite alternate;
 }
 
 .orb-1 {
@@ -81,7 +71,6 @@
   background: rgba(212, 163, 115, 0.15);
   top: 10%;
   left: -5%;
-  animation-delay: 0s;
 }
 
 .orb-2 {
@@ -90,7 +79,6 @@
   background: rgba(181, 201, 168, 0.1);
   bottom: -10%;
   right: -10%;
-  animation-delay: -4s;
 }
 
 .orb-3 {
@@ -99,22 +87,6 @@
   background: rgba(245, 240, 225, 0.08);
   top: 40%;
   right: 20%;
-  animation-delay: -8s;
-}
-
-@keyframes orbFloat {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(20px, -30px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-  100% {
-    transform: translate(10px, -10px) scale(1.05);
-  }
 }
 
 .page-harvest .page-hero-content {
@@ -124,35 +96,14 @@
   margin: 0 auto;
   padding: 2rem 1.5rem;
   text-align: center;
-  animation: contentFloat 8s ease-in-out infinite alternate;
 }
 
-@keyframes contentFloat {
-  0% {
-    transform: translateY(0px);
-  }
-  100% {
-    transform: translateY(-8px);
-  }
-}
 
-.page-harvest .page-badge {
-  display: inline-block;
-  font-size: 0.8rem;
-    margin-top: 4rem;
-
-  color: var(--color-sage);
-  letter-spacing: 3px;
-  margin-bottom: 1rem;
-  padding: 0.4rem 1.4rem;
-  background: rgba(245, 240, 225, 0.05);
-  border: 1px solid rgba(245, 240, 225, 0.08);
-  border-radius: 9999px;
-  backdrop-filter: blur(8px);
-}
 
 .page-harvest .page-title {
   font-size: var(--font-6xl);
+  margin-top: 4rem;
+  
   line-height: 1;
   color: var(--color-linen);
   margin-bottom: 1.5rem;
@@ -183,7 +134,6 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem 1.5rem 4rem;
-  scroll-margin-top: 20px;
 }
 
 /* ---------- Filters ---------- */
@@ -205,30 +155,12 @@
   font-family: inherit;
   font-size: 0.875rem;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(4px);
   white-space: nowrap;
-}
-
-.page-harvest .harvest-filter-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(122, 140, 74, 0.2), transparent);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.page-harvest .harvest-filter-btn:hover::before {
-  opacity: 1;
 }
 
 .page-harvest .harvest-filter-btn:hover {
   background: rgba(245, 240, 225, 0.06);
   color: var(--color-linen);
-  transform: translateY(-2px) scale(1.02);
   border-color: rgba(245, 240, 225, 0.15);
 }
 
@@ -236,11 +168,10 @@
   background: var(--color-linen);
   color: var(--color-moss);
   border-color: var(--color-linen);
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 4px 30px rgba(245, 240, 225, 0.15), 0 0 60px rgba(245, 240, 225, 0.05);
+  box-shadow: 0 4px 30px rgba(245, 240, 225, 0.15);
 }
 
-/* ---------- Grid Wrapper for smooth scrolling ---------- */
+/* ---------- Grid Wrapper ---------- */
 .page-harvest .harvest-grid-wrapper {
   scroll-margin-top: 80px;
 }
@@ -258,37 +189,13 @@
   border: 1px solid rgba(245, 240, 225, 0.06);
   border-radius: 1.5rem;
   overflow: hidden;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   cursor: pointer;
-  transform-style: preserve-3d;
-  perspective: 1200px;
-  position: relative;
   -webkit-tap-highlight-color: transparent;
 }
 
-.page-harvest .harvest-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 1.5rem;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(245, 240, 225, 0.05), transparent, rgba(245, 240, 225, 0.05));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.page-harvest .harvest-card:hover::after {
-  opacity: 1;
-}
-
 .page-harvest .harvest-card:hover {
-  transform: translateY(-14px) scale(1.02) rotateX(2deg) rotateY(3deg);
   border-color: rgba(245, 240, 225, 0.12);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 80px rgba(122, 140, 74, 0.04);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
 }
 
 .page-harvest .harvest-card-image {
@@ -296,30 +203,7 @@
   background-size: cover !important;
   background-position: center !important;
   position: relative;
-  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
   overflow: hidden;
-}
-
-.page-harvest .harvest-card:hover .harvest-card-image {
-  transform: scale(1.1);
-}
-
-.card-shimmer {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(105deg,
-      transparent 40%,
-      rgba(255, 255, 255, 0.03) 45%,
-      rgba(255, 255, 255, 0.06) 50%,
-      rgba(255, 255, 255, 0.03) 55%,
-      transparent 60%);
-  transform: translateX(-100%);
-  transition: transform 0.8s ease;
-  pointer-events: none;
-}
-
-.page-harvest .harvest-card:hover .card-shimmer {
-  transform: translateX(100%);
 }
 
 .page-harvest .harvest-card-overlay {
@@ -329,11 +213,6 @@
       transparent 30%,
       rgba(10, 12, 8, 0.2) 60%,
       rgba(10, 12, 8, 0.8) 100%);
-  transition: opacity 0.4s ease;
-}
-
-.page-harvest .harvest-card:hover .harvest-card-overlay {
-  opacity: 0.7;
 }
 
 .page-harvest .harvest-card-season {
@@ -350,13 +229,6 @@
   text-transform: uppercase;
   letter-spacing: 1.5px;
   z-index: 2;
-  transition: all 0.4s ease;
-}
-
-.page-harvest .harvest-card:hover .harvest-card-season {
-  background: rgba(245, 240, 225, 0.15);
-  transform: scale(1.05) translateX(4px);
-  border-color: rgba(245, 240, 225, 0.2);
 }
 
 .page-harvest .harvest-card-content {
@@ -372,12 +244,10 @@
   color: var(--color-linen);
   font-style: italic;
   margin-bottom: 0.5rem;
-  transition: color 0.3s ease;
 }
 
 .page-harvest .harvest-card:hover .harvest-card-name {
   color: var(--color-wheat);
-  transform: translateX(4px);
 }
 
 .page-harvest .harvest-card-desc {
@@ -400,13 +270,10 @@
   padding: 0.25rem 0.9rem;
   background: rgba(122, 140, 74, 0.08);
   border-radius: 9999px;
-  transition: all 0.4s ease;
 }
 
 .page-harvest .harvest-card:hover .harvest-card-harvest {
   background: rgba(122, 140, 74, 0.18);
-  transform: translateX(6px);
-  box-shadow: 0 0 20px rgba(122, 140, 74, 0.05);
 }
 
 /* ---------- Stats ---------- */
@@ -423,26 +290,11 @@
   border-radius: 1.25rem;
   padding: 1.5rem 1rem;
   text-align: center;
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
   overflow: hidden;
 }
 
-.page-harvest .harvest-stat-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(122, 140, 74, 0.05), transparent);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.page-harvest .harvest-stat-card:hover::before {
-  opacity: 1;
-}
-
 .page-harvest .harvest-stat-card:hover {
-  transform: translateY(-8px) scale(1.02);
   border-color: rgba(245, 240, 225, 0.12);
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.35);
 }
@@ -456,17 +308,6 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: inline-block;
-  animation: statPulse 3s ease-in-out infinite;
-}
-
-@keyframes statPulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.02);
-  }
 }
 
 .page-harvest .harvest-stat-label {
@@ -481,18 +322,6 @@
   margin-top: 0.8rem;
   background: linear-gradient(90deg, var(--color-sage), var(--color-wheat));
   border-radius: 9999px;
-  width: 0%;
-  animation: progressGrow 1.2s ease-out forwards;
-  transform-origin: left;
-}
-
-@keyframes progressGrow {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
 }
 
 /* ---------- Modal ---------- */
@@ -518,7 +347,7 @@
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  box-shadow: 0 50px 150px rgba(0, 0, 0, 0.7), 0 0 80px rgba(122, 140, 74, 0.03);
+  box-shadow: 0 50px 150px rgba(0, 0, 0, 0.7);
   -webkit-overflow-scrolling: touch;
 }
 
@@ -548,7 +377,6 @@
   font-size: 1.8rem;
   cursor: pointer;
   z-index: 10;
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -556,7 +384,6 @@
 
 .page-harvest .harvest-modal-close:hover {
   background: rgba(245, 240, 225, 0.1);
-  transform: rotate(90deg) scale(1.1);
   border-color: rgba(245, 240, 225, 0.2);
 }
 
@@ -609,7 +436,6 @@
   background: rgba(245, 240, 225, 0.02);
   border-radius: 0.9rem;
   border: 1px solid rgba(245, 240, 225, 0.04);
-  transition: all 0.4s ease;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
@@ -617,7 +443,6 @@
 .page-harvest .harvest-modal-detail:hover {
   background: rgba(245, 240, 225, 0.04);
   border-color: rgba(245, 240, 225, 0.08);
-  transform: translateX(4px);
 }
 
 .page-harvest .detail-label {
@@ -638,43 +463,40 @@
    MOBILE RESPONSIVE
    ============================================================ */
 
-/* Tablet and below */
 @media (max-width: 1024px) {
   .page-harvest .page-title {
     font-size: var(--font-5xl);
   }
-  
+
   .page-harvest .harvest-grid {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 1.5rem;
   }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
   .page-harvest .page-hero {
     min-height: 40vh;
     max-height: 55vh;
   }
-  
+
   .page-harvest .page-title {
     font-size: var(--font-4xl);
   }
-  
+
   .page-harvest .page-subtitle {
     font-size: var(--font-sm);
     padding: 0 1rem;
   }
-  
+
   .hero-orb {
     display: none;
   }
-  
+
   .page-harvest .page-content {
     padding: 1.5rem 1rem 3rem;
   }
-  
-  /* Filter buttons - horizontal scroll on mobile */
+
   .page-harvest .harvest-filters {
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -685,89 +507,87 @@
     -ms-overflow-style: none;
     margin-bottom: 2rem;
   }
-  
+
   .page-harvest .harvest-filters::-webkit-scrollbar {
     display: none;
   }
-  
+
   .page-harvest .harvest-filter-btn {
     flex-shrink: 0;
     padding: 0.5rem 1.2rem;
     font-size: 0.8rem;
   }
-  
+
   .page-harvest .harvest-grid {
     grid-template-columns: 1fr;
     gap: 1.2rem;
   }
-  
+
   .page-harvest .harvest-card {
     border-radius: 1.25rem;
   }
-  
+
   .page-harvest .harvest-card-image {
     height: 200px;
   }
-  
+
   .page-harvest .harvest-card-content {
     padding: 1.2rem;
   }
-  
+
   .page-harvest .harvest-card-desc {
     -webkit-line-clamp: 2;
   }
-  
-  /* Stats - 2 columns on mobile */
+
   .page-harvest .harvest-stats {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
   }
-  
+
   .page-harvest .harvest-stat-card {
     padding: 1rem 0.75rem;
   }
-  
+
   .page-harvest .harvest-stat-number {
     font-size: var(--font-3xl);
   }
-  
+
   .page-harvest .harvest-stat-label {
     font-size: 0.7rem;
   }
-  
-  /* Modal */
+
   .page-harvest .harvest-modal {
     max-width: 100%;
     border-radius: 1.5rem;
     margin: 0.5rem;
     max-height: 95vh;
   }
-  
+
   .page-harvest .harvest-modal-image {
     height: 200px;
     border-radius: 1.5rem 1.5rem 0 0;
   }
-  
+
   .page-harvest .harvest-modal-content {
     padding: 1.5rem;
   }
-  
+
   .page-harvest .harvest-modal-title {
     font-size: var(--font-xl);
   }
-  
+
   .page-harvest .harvest-modal-detail {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.2rem;
     padding: 0.6rem 1rem;
   }
-  
+
   .page-harvest .detail-value {
     text-align: left;
     font-size: 0.85rem;
   }
-  
+
   .page-harvest .harvest-modal-close {
     width: 40px;
     height: 40px;
@@ -777,102 +597,73 @@
   }
 }
 
-/* Small mobile */
 @media (max-width: 480px) {
   .page-harvest .page-hero {
     min-height: 35vh;
     max-height: 45vh;
   }
-  
+
   .page-harvest .page-title {
     font-size: var(--font-3xl);
   }
-  
+
   .page-harvest .page-badge {
     font-size: 0.65rem;
     padding: 0.3rem 1rem;
   }
-  
+
   .page-harvest .page-content {
     padding: 1rem 0.75rem 2rem;
   }
-  
+
   .page-harvest .harvest-grid {
     gap: 1rem;
   }
-  
+
   .page-harvest .harvest-card-image {
     height: 170px;
   }
-  
+
   .page-harvest .harvest-card-name {
     font-size: var(--font-base);
   }
-  
+
   .page-harvest .harvest-card-desc {
     font-size: 0.8rem;
   }
-  
+
   .page-harvest .harvest-stats {
     grid-template-columns: 1fr 1fr;
     gap: 0.6rem;
   }
-  
+
   .page-harvest .harvest-stat-number {
     font-size: var(--font-2xl);
   }
-  
+
   .page-harvest .harvest-stat-card {
     padding: 0.8rem 0.5rem;
   }
-  
+
   .page-harvest .harvest-modal {
     border-radius: 1rem;
     margin: 0.25rem;
   }
-  
+
   .page-harvest .harvest-modal-image {
     height: 160px;
     border-radius: 1rem 1rem 0 0;
   }
-  
+
   .page-harvest .harvest-modal-content {
     padding: 1rem;
   }
-  
+
   .page-harvest .harvest-modal-title {
     font-size: var(--font-lg);
   }
-  
+
   .page-harvest .harvest-modal-desc {
     font-size: 0.8rem;
-  }
-}
-
-/* Touch device optimizations */
-@media (hover: none) {
-  .page-harvest .harvest-card:hover {
-    transform: none !important;
-    border-color: rgba(245, 240, 225, 0.06) !important;
-    box-shadow: none !important;
-  }
-  
-  .page-harvest .harvest-card:active {
-    transform: scale(0.97) !important;
-    transition: transform 0.1s ease;
-  }
-  
-  .page-harvest .harvest-card:hover .harvest-card-image {
-    transform: none !important;
-  }
-  
-  .page-harvest .harvest-card:hover .card-shimmer {
-    transform: translateX(-100%) !important;
-  }
-  
-  .page-harvest .harvest-stat-card:hover {
-    transform: none !important;
-    border-color: rgba(245, 240, 225, 0.06) !important;
-    box-shadow: none !important;
   }
 }
